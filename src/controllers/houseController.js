@@ -2,7 +2,7 @@ const houseModel = require("../models/houseModel");
 
 const getAllHouses = async (req, res) => {
     try {
-        const houses = await houseModel.getHouses();
+        const houses = await houseModel.getAllHouses();
         res.json(houses);
     } catch (error) {
         console.error("Erro ao buscar casas:", error);

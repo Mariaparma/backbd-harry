@@ -4,7 +4,7 @@ const wizardModel = require("../models/wizardModel");
 
 const exportWizardCSV = async (req, res) => {
     try {
-        const wizards = await wizardModel.getWizards();
+        const wizards = await wizardModel.getAllWizards();
 
         if (!wizards || wizards.length === 0) {
             return res.status(404).json({ message: "Nenhum bruxo encontrado para exportar." });
