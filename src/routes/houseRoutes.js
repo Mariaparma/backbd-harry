@@ -1,6 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const houseController = require("../controllers/houseController");
+const apiKeyMiddleware =  require("../config/apiKey")
+
+router.use(apiKeyMiddleware);
+/**
+ * @swagger
+ * tags:
+ *   name: Houses
+ *   description: Gerenciamento de casas
+ */
 
 /**
  * @swagger
@@ -12,7 +21,27 @@ const houseController = require("../controllers/houseController");
  *       200:
  *         description: Lista de casas
  */
-router.get("/houses", houseController.getAllHouses);
+router.get("/", houseController.getAllHouses);
+
+/**
+ * @swagger
+ * /api/houses/{id}:
+ *   get:
+ *     summary: Busca casa por ID
+ *     tags: [Houses]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Casa encontrada
+ *       404:
+ *         description: Casa não encontrada
+ */
+router.get("/:id", houseController.getHouse);
 
 /**
  * @swagger
@@ -35,7 +64,7 @@ router.get("/houses", houseController.getAllHouses);
  *       201:
  *         description: Casa criada
  */
-router.post("/houses", houseController.createHouse);
+router.post("/", houseController.createHouse);
 
 /**
  * @swagger
@@ -53,7 +82,7 @@ router.post("/houses", houseController.createHouse);
  *       200:
  *         description: Casa deletada
  */
-router.delete("/houses/:id", houseController.deleteHouse);
+router.delete("/:id", houseController.deleteHouse);
 
 /**
  * @swagger
@@ -82,14 +111,6 @@ router.delete("/houses/:id", houseController.deleteHouse);
  *       200:
  *         description: Casa atualizada
  */
-router.put("/houses/:id", houseController.updateHouse);
-
-
-// Rotas para casas
-router.get("/", houseController.getAllHouses);
-router.get("/:id", houseController.getHouse);
-router.post("/", houseController.createHouse); 
-router.put("/:id", houseController.updateHouse); 
-router.delete("/:id", houseController.deleteHouse); 
+router.put("/:id", houseController.updateHouse);
 
 module.exports = router;

@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const wizardController = require("../controllers/wizardController");
+const apiKeyMiddleware = require ("../config/apiKey.js");
+
+router.use(apiKeyMiddleware);
 
 /**
  * @swagger

@@ -4,7 +4,7 @@ const cors = require("cors");
 const wizardRoutes = require("./src/routes/wizardRoutes");
 const houseRoutes = require("./src/routes/houseRoutes");
 const reportRoutes = require("./src/routes/reportRoutes");
-const setupSwagger = require('./src/config/swagger'); // Swagger aqui
+const setupSwagger = require('./src/config/swagger'); 
 const path = require("path");
 
 const app = express();
