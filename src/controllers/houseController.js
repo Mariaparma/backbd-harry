@@ -27,16 +27,16 @@ const createHouse = async (req, res) => {
     try {
         const { name, founder } = req.body;
 
-        // Validação de entrada
+        
         if (!name || !founder) {
             return res.status(400).json({ message: "Os campos 'name' e 'founder' são obrigatórios." });
         }
 
-        const newHouse = await houseModel.createHouse(name, founder); // Corrigido
+        const newHouse = await houseModel.createHouse(name, founder); 
         res.status(201).json(newHouse);
     } catch (error) {
         console.error("Erro ao criar casa:", error);
-        if (error.code === "23505") { // Código de erro para duplicidade (PostgreSQL)
+        if (error.code === "23505") { 
             return res.status(400).json({ message: "Casa já cadastrada." });
         }
         res.status(500).json({ message: "Erro ao criar Casa." });
@@ -47,7 +47,7 @@ const updateHouse = async (req, res) => {
     try {
         const { name, founder } = req.body;
 
-        // Validação de entrada
+       
         if (!name || !founder) {
             return res.status(400).json({ message: "Os campos 'name' e 'founder' são obrigatórios." });
         }
